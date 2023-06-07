@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Cleaning Maven') {
+            steps {
+                sh 'mvn dependency:purge-local-repository'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
